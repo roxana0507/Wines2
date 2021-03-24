@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_212631) do
+ActiveRecord::Schema.define(version: 2021_03_24_213316) do
 
   create_table "strains", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wine_strains", force: :cascade do |t|
+    t.integer "percentage"
+    t.integer "wine_id", null: false
+    t.integer "strain_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["strain_id"], name: "index_wine_strains_on_strain_id"
+    t.index ["wine_id"], name: "index_wine_strains_on_wine_id"
   end
 
   create_table "wines", force: :cascade do |t|
@@ -24,4 +34,6 @@ ActiveRecord::Schema.define(version: 2021_03_24_212631) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "wine_strains", "strains"
+  add_foreign_key "wine_strains", "wines"
 end
