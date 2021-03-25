@@ -5,5 +5,14 @@
   <%= @wine.name %>
 </p>
 
+<% if @wine.strains.present? %>
+<p><strong>Strains:</strong></p>
+  <ul>
+    <% @wine.strains.each do |strain| %>
+      <li><%= strain.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
 <%= link_to 'Back', wines_path %>

@@ -15,7 +15,6 @@
   <tbody>
     <% @wine_strains.each do |wine_strain| %>
       <tr>
-        <td><%= wine_strain.percentage %></td>
         <td><%= wine_strain.wine_id %></td>
         <td><%= wine_strain.strain_id %></td>
         <td><%= link_to 'Show', wine_strain %></td>
