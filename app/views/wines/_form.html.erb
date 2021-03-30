@@ -15,17 +15,13 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :strains %>
-      <%= form.collection_check_boxes(:strain_ids, @strains, :id, :name) do |b| %>
-        <%= b.label class: 'label-checkbox' do %>
-        <%= b.check_box + b.text %>
-        <br>
-        <%= form.text_field '', name:'wine[percentages][]' %>
-        <% end %>
-      <% end %>
-  </div>
+  
+  <%= form.fields_for :wine_strains do |strain| %>
+    <div class="field">
+      <%= strain.select :strain_id, @strains, prompt: 'Select a strain' %>
+    <%= strain.text_field :percentage, placeholder: 'Add a percentage' %>  
+    </div>
+  <% end %>  
 
   <div class="actions">
     <%= form.submit %>
